@@ -1,13 +1,11 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: MainBranchAction
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
-  pull_request:
     branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
@@ -26,7 +24,7 @@ jobs:
       # Try Run Matermost chat
       - name: Create Mattermost chat
         run: |
-          echo mattermost.json
+          echo "{\"text\":\"### Production already up new code :cool_unicorn_cat:\"}" > mattermost.json
       - uses: mattermost/action-mattermost-notify@master
         env: 
           MATTERMOST_WEBHOOK_URL: ${{ secrets.MATTERMOST_WEBHOOK_URL }}
