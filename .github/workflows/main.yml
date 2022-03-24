@@ -26,7 +26,7 @@ jobs:
       # Try Run Matermost chat
       - name: Create Mattermost chat
         run: |
-          echo mattermost_simple.json
+          echo mattermost.json
       - uses: mattermost/action-mattermost-notify@master
         env: 
           MATTERMOST_WEBHOOK_URL: ${{ secrets.MATTERMOST_WEBHOOK_URL }}
