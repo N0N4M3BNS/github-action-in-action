@@ -26,8 +26,9 @@ jobs:
       # Try Run Matermost chat
       - name: Create Mattermost chat
         run: |
-          echo "{\"text\":\"Hi I'm Github Bot :meow_party: \"}" > mattermost.json
+          echo mattermost_simple.json
       - uses: mattermost/action-mattermost-notify@master
         env: 
           MATTERMOST_WEBHOOK_URL: ${{ secrets.MATTERMOST_WEBHOOK_URL }}
-          MATTERMOST_USERNAME: "wazeer"
+          MATTERMOST_CHANNEL: Community
+          MATTERMOST_USERNAME: "@wazeer"
