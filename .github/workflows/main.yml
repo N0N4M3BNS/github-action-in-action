@@ -24,7 +24,7 @@ jobs:
       # Try Run Matermost chat
       - name: Create Mattermost chat
         run: |
-          echo "{\"text\":\"### Have new feature on Development :deployparrot: \"}" > mattermost.json
+          echo "{\"channel\": \"town-square\",\"text\":\"### Have new feature on Development :deployparrot: \"}" > mattermost.json
       - uses: mattermost/action-mattermost-notify@master
         env: 
           MATTERMOST_WEBHOOK_URL: ${{ secrets.MATTERMOST_WEBHOOK_URL }}
