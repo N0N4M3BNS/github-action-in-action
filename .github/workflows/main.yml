@@ -35,6 +35,9 @@ jobs:
             
             # Stop PM2
             pm2 stop all
+            
+            # Pull latest code
+            git pull origin dev
 
             # Install NUXTJS file
             npm install 
@@ -45,6 +48,7 @@ jobs:
             
       # Success notification
       - name: Mattermost chat success notification
+        if: job.status == 'success'
         run: |
           echo "{\"channel\": \"reskills-frontend\",\"text\":\"## Have new feature on Development :deployparrot: \"}" > mattermost.json
       - uses: mattermost/action-mattermost-notify@master
