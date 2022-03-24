@@ -52,11 +52,11 @@ jobs:
       - name: Mattermost chat success notification
         if: job.status == 'success'
         run: |
-          echo "{\"channel\": \"reskills-frontend\",\"text\":\"## Have new feature on Development :deployparrot: \"}"
+          echo "{\"channel\": \"reskills-frontend\",\"text\":\"## Have new feature on Development :deployparrot: \"}" > mattermost.json
           
           
       # Error notification
       - name: Mattermost chat error notification
         if: job.status == 'failure'
         run: |
-          echo "{\"channel\": \"reskills-frontend\",\"text\":\"## :warning: :warning: :warning:  The deployment has failed @channel \"}"
+          echo "{\"channel\": \"reskills-frontend\",\"text\":\"## :warning: :warning: :warning:  The deployment has failed @channel \"}" > mattermost.json
