@@ -27,7 +27,8 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
           script: |
             # Go to file directory
             cd /www/wwwroot/reskills.bravonet.io/reskills_vue
