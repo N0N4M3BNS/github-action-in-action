@@ -20,9 +20,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: mattermost/action-mattermost-notify@master
-        env: 
-          MATTERMOST_WEBHOOK_URL: ${{ secrets.MATTERMOST_WEBHOOK_URL }}
       
       - name: Deploying
         uses: appleboy/ssh-action@master
@@ -60,3 +57,7 @@ jobs:
         if: job.status == 'failure'
         run: |
           echo "{\"channel\": \"reskills-frontend\",\"text\":\"## :warning: :warning: :warning:  The deployment has failed @channel \"}" > mattermost.json
+          
+      - uses: mattermost/action-mattermost-notify@master
+        env: 
+          MATTERMOST_WEBHOOK_URL: ${{ secrets.MATTERMOST_WEBHOOK_URL }}    
