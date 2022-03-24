@@ -53,7 +53,7 @@ jobs:
           
           
       # Error notification
-      - name: Mattermost chat success notification
+      - name: Mattermost chat error notification
         if: job.status == 'failure'
         run: |
           echo "{\"channel\": \"reskills-frontend\",\"text\":\"## :warning: :warning: :warning:  The deployment has failed @channel \"}" > mattermost.json
