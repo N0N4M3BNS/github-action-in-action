@@ -1,0 +1,10 @@
+{
+  "channel": "town-square",
+  "username": "wazeer",
+  "text": "#### Test results for July 27th, 2021\n<!channel> please review failed tests.\n
+  | Component  | Tests Run   | Tests Failed                                   |
+  |:-----------|:-----------:|:-----------------------------------------------|
+  | Server     | 948         | :white_check_mark: 0                           |
+  | Web Client | 123         | :warning: 2 [(see details)](http://linktologs) |
+  | iOS Client | 78          | :warning: 3 [(see details)](http://linktologs) |"
+}
