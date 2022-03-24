@@ -38,7 +38,8 @@ jobs:
       # Try Run Matermost chat
       - name: Create Matermost chat
         run: |
-          echo "{\"text\":\"testing github action :tada:\"}" > mattermost.json
+          echo "{\"text\":\"Hi I'm Github Bot :tada:\"}" > mattermost.json
       - uses: mattermost/action-mattermost-notify@master
         env: 
           MATTERMOST_WEBHOOK_URL: ${{ secrets.MATTERMOST_WEBHOOK_URL }}
+          MATTERMOST_USERNAME: gitactionbot
