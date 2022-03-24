@@ -14,17 +14,48 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  deploy:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - uses: actions/checkout@v2
+      
+      - name: Deploying
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          script: |
+            # Go to file directory
+            cd /www/wwwroot/reskills.bravonet.io/reskills_vue
+            
+            # Stop PM2
+            pm2 stop all
 
-      # Try Run Matermost chat
-      - name: Create Mattermost chat
+            # Install NUXTJS file
+            npm install 
+            npm build
+            
+            # Start PM2
+            pm2 start
+            
+      # Success notification
+      - name: Mattermost chat success notification
         run: |
-          echo "{\"channel\": \"town-square\",\"text\":\"### Have new feature on Development :deployparrot: \"}" > mattermost.json
+          echo "{\"channel\": \"reskills-frontend\",\"text\":\"## Have new feature on Development :deployparrot: \"}" > mattermost.json
+      - uses: mattermost/action-mattermost-notify@master
+        env: 
+          MATTERMOST_WEBHOOK_URL: ${{ secrets.MATTERMOST_WEBHOOK_URL }}
+          
+          
+      # Error notification
+      - name: Mattermost chat success notification
+        if: job.status == 'failure'
+        run: |
+          echo "{\"channel\": \"reskills-frontend\",\"text\":\"## :warning: :warning: :warning:  The deployment has failed @channel \"}" > mattermost.json
       - uses: mattermost/action-mattermost-notify@master
         env: 
           MATTERMOST_WEBHOOK_URL: ${{ secrets.MATTERMOST_WEBHOOK_URL }}
