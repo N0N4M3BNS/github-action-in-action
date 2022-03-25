@@ -49,7 +49,16 @@ jobs:
       - name: Mattermost chat success notification
         if: job.status == 'success'
         run: |
-          echo "{\"channel\": \"reskills-frontend\",\"text\":\"## Have new feature on Development :deployparrot: \"}" > mattermost.json
+          echo "{
+            \"channel\":\"reskills-frontend\",
+            \"text\":\"----------------------------- \n
+              ${{ github.actor }} created commit: \n
+              Commit message: ${{ github.event.commits[0].message }} \n\n
+              Repository: ${{ github.repository }} \n\n
+              See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+              ----------------------------- \n
+            \"
+            }" > mattermost.json
           
           
       # Error notification
